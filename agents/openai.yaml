@@ -1,5 +1,5 @@
 interface:
-  display_name: "MiroFish Guide"
+  display_name: "MiroFish Guide Skill"
   short_description: "MiroFish operations and debugging guide"
   icon_small: "./assets/mirofish-guide-mark.svg"
   icon_large: "./assets/mirofish-guide-banner.svg"

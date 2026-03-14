@@ -1,6 +1,6 @@
-# MiroFish Guide
+# MiroFish Guide Skill
 
-> Companion repository and AI-agent skill for working with the [MiroFish](https://github.com/666ghj/MiroFish) engine.
+> Community guide and AI-agent skill for working with the [MiroFish](https://github.com/666ghj/MiroFish) engine.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MiroFish](https://img.shields.io/badge/MiroFish-companion-blue)](https://github.com/666ghj/MiroFish)
@@ -16,17 +16,19 @@ This repository serves a different job:
 - turn those practices into a portable `SKILL.md` for AI coding agents;
 - document the parts of the engine that matter when you are trying to get better outputs, debug failures, or maintain a support repository around MiroFish.
 
-In short: `MiroFish` is the engine, `mirofish-guide` is the operator's playbook.
+In short: `MiroFish` is the engine, `mirofish-guide` is the operator's playbook and reusable skill layer.
 
 ## What Problems This Repository Solves
 
 This repository is for the people searching for:
 
 - `MiroFish guide`
+- `MiroFish guide skill`
 - `MiroFish tutorial`
 - `MiroFish setup`
 - `MiroFish troubleshooting`
 - `MiroFish best practices`
+- `MiroFish skill`
 - `MiroFish prompt design`
 - `MiroFish seed text`
 - `MiroFish report debugging`

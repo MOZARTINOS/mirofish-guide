@@ -3,7 +3,7 @@ name: mirofish-guide
 description: "Companion skill for the MiroFish multi-agent simulation engine. Use when planning or running MiroFish simulations, writing source material or simulation requirements, debugging graph/entity/profile/config/runtime/report stages, interpreting generated artifacts, or maintaining a repository of MiroFish best practices."
 ---
 
-# MiroFish Companion Skill
+# MiroFish Guide Skill
 
 Use this skill when the task touches MiroFish operations, documentation, experiments, or repository maintenance.
 

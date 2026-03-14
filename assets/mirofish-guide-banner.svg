@@ -21,7 +21,7 @@
     <path d="M27 72c22-29 46-44 73-44 13 0 24 3 33 9-13 7-22 17-28 30 13 1 25 7 37 18-15 5-31 8-49 8-12 0-24-1-36-4l-19 21H17l19-23c-4-5-7-10-9-15z" fill="#98f0d5"/>
     <circle cx="86" cy="53" r="5" fill="#0a2531"/>
   </g>
-  <text x="294" y="208" fill="#f7fff9" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="700">MiroFish Guide</text>
+  <text x="294" y="208" fill="#f7fff9" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="700">MiroFish Guide Skill</text>
   <text x="296" y="268" fill="#d8fff2" font-family="Segoe UI, Arial, sans-serif" font-size="28">Practical setup, troubleshooting, prompt design, and simulation best practices</text>
   <text x="296" y="342" fill="#ffffff" font-family="Consolas, Courier New, monospace" font-size="26">Guide the pipeline:</text>
   <text x="296" y="385" fill="#ffffff" font-family="Consolas, Courier New, monospace" font-size="26">source -&gt; graph -&gt; entities -&gt; profiles -&gt; runtime -&gt; report</text>
