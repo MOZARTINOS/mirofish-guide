@@ -63,7 +63,7 @@ Good seed text includes: regulatory bodies (SEC, EU MiCA), market indicators (RS
 
 The `simulation_topic` field guides what agents discuss. Be specific:
 
-- ✅ "Bitcoin BTC price prediction for next 7-30 days from March 14 2026. Current price $83,000. Focus on: SEC regulatory impact, ETF flows, technical support levels, macro factors (CPI, Fed rate)."
+- ✅ "Bitcoin BTC price prediction for next 7-30 days from March 2026. Current price $83,000. Focus on: SEC regulatory impact, ETF flows, technical support levels, macro factors (CPI, Fed rate)."
 - ❌ "What will happen with crypto?"
 
 ## Agent Design (Auto-Generated)
@@ -104,7 +104,7 @@ Agent count is determined by number of entities in your knowledge graph. More en
 
 ### OOM Prevention
 
-- With large models (Opus, GPT-5.4): **max 10 rounds** on 8GB RAM server
+- With large models (GPT-4+, Claude Opus): **max 10 rounds** on 8GB RAM server
 - With small models (Gemini Flash, Qwen): 30+ rounds safe
 - Monitor RAM during simulation — OASIS engine accumulates state
 
@@ -112,7 +112,7 @@ Agent count is determined by number of entities in your knowledge graph. More en
 
 ReportAgent uses ReACT pattern (Reason → Act → Observe → Repeat) with Zep tools:
 - `search`: Search simulation data for specific topics
-- `insight_forge`: Generate insights from agent interactions  
+- `insight_forge`: Generate insights from agent interactions
 - `panorama`: Overview of simulation state
 - `interview`: "Interview" specific agents about their reasoning
 
@@ -120,57 +120,46 @@ Reports are generated section-by-section. Each section goes through multiple LLM
 
 ### Report Quality Depends On
 
-1. **Model quality**: GPT-5.4/Opus >> Gemini Flash for report depth
+1. **Model quality**: GPT-4+ / Claude Opus >> smaller models for report depth
 2. **Simulation richness**: More rounds + more agents = richer data for report
 3. **Topic specificity**: Vague topics = vague reports
 
-## Codex OAuth Proxy Integration
+## LLM Configuration
 
-Use the Codex OAuth Proxy for free GPT-5.4 access:
+MiroFish supports any OpenAI SDK-compatible LLM API. Configure in `.env`:
 
 ```env
-# .env file
-LLM_API_KEY=not-needed
-LLM_BASE_URL=http://localhost:4000/v1
-LLM_MODEL_NAME=gpt-5.4
+LLM_API_KEY=your_api_key
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL_NAME=gpt-4o
+
+ZEP_API_KEY=your_zep_api_key
 ```
 
-Start proxy: `nohup python3 scripts/codex_proxy.py 4000 > /tmp/cp.log 2>&1 &`
+Any OpenAI-compatible proxy (LiteLLM, Ollama, vLLM, etc.) works — just set `LLM_BASE_URL` accordingly.
 
-**Important**: assistant message content type must be `output_text` (not `input_text`) in Responses API — proxy handles this automatically.
+## Common Pitfalls
 
-## Lessons Learned (from real experiments)
-
-See [references/experiments.md](references/experiments.md) for detailed v1-v4 experiment logs.
-
-Key takeaways:
-1. **Simulation rounds ≠ LLM calls during rounds** — OASIS engine posts initial content but may not make LLM calls each round (agents act on pre-generated profiles)
-2. **Report generation IS where LLM shines** — ReportAgent makes many multi-turn LLM calls
-3. **More agents ≠ better** — 9 focused agents with diverse stances > 50 generic ones
-4. **Seed text quality > everything** — garbage in = garbage out
-5. **Check proxy logs** to verify LLM calls are actually happening
-6. **Backend needs venv**: `.venv/bin/python3 run.py`, not system python
+1. **Simulation rounds ≠ LLM calls per round** — OASIS engine posts initial content but may not make LLM calls each round. Agents can act on pre-generated profiles without calling LLM.
+2. **Report generation is where LLM shines** — ReportAgent makes many multi-turn LLM calls (dozens per report).
+3. **More agents ≠ better** — 9 focused agents with diverse stances > 50 generic ones.
+4. **Seed text quality > everything** — garbage in = garbage out.
+5. **Backend needs venv** — use `.venv/bin/python3 run.py`, not system python.
+6. **assistant message content type** — if using a custom proxy, ensure assistant messages use `output_text` (not `input_text`) in the Responses API format.
+7. **Environment variable propagation** — `run_parallel_simulation.py` may call `load_dotenv()` which can override env vars set by the parent Flask process.
 
 ## Quick Start Checklist
 
 1. [ ] Write seed text (500-3000 words, multiple stakeholders, data, relationships)
 2. [ ] Formulate specific simulation_topic with timeframe
-3. [ ] Start Codex proxy (port 4000) or configure LLM API in `.env`
-4. [ ] Start MiroFish: `cd MiroFish/backend && .venv/bin/python3 run.py`
-5. [ ] Frontend: `cd MiroFish/frontend && npm run dev`
+3. [ ] Configure LLM API in `.env`
+4. [ ] Start MiroFish backend: `cd MiroFish/backend && .venv/bin/python3 run.py`
+5. [ ] Start frontend: `cd MiroFish/frontend && npm run dev`
 6. [ ] Create project → Upload seed → Build graph → Wait for graph completion
 7. [ ] Start simulation (10-30 rounds recommended)
 8. [ ] Generate report after simulation completes
 9. [ ] Review report + optionally chat with ReportAgent or individual agents
 
-## File Locations
+## Experiment Notes
 
-| Component | Path |
-|-----------|------|
-| Backend | `MiroFish/backend/` |
-| Frontend | `MiroFish/frontend/` |
-| Config | `MiroFish/.env` |
-| Simulations | `MiroFish/backend/uploads/simulations/` |
-| Reports | `MiroFish/backend/uploads/reports/` |
-| Backend venv | `MiroFish/backend/.venv/bin/python3` |
-| Simulation logs | `simulations/<sim_id>/simulation.log` |
+See [references/experiments.md](references/experiments.md) for detailed experiment logs showing how different models and configurations affect simulation quality.

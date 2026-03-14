@@ -1,71 +1,69 @@
 # MiroFish Experiments Log
 
-## v1 — Gemini Flash, BTC prediction (20 rounds)
+Real-world experiment results to help you calibrate expectations and avoid known pitfalls.
 
-- **Project**: `proj_c8f04c1f3cd5`
+## Experiment 1 — Small Model, BTC Prediction (20 rounds)
+
 - **Model**: Gemini Flash (free tier)
-- **Rounds**: 20, 116 actions
+- **Rounds**: 20, ~116 actions
 - **Result**: Brief output, limited depth. Free tier rate limits (15 RPM) slowed generation
-- **Lesson**: Gemini Flash too shallow for meaningful prediction reports
+- **Lesson**: Small/free models are too shallow for meaningful prediction reports
 
-## v2 — Gemini Flash, BTC prediction (30 rounds)
+## Experiment 2 — Small Model, BTC Prediction (30 rounds)
 
-- **Project**: `proj_cf7db7d150b9`
-- **Rounds**: 30, 187 actions
-- **Report**: `report_d3a82d6901e4` — generated successfully
-- **Lesson**: More rounds = more data for report, but Gemini Flash still produces surface-level analysis
+- **Model**: Gemini Flash (free tier)
+- **Rounds**: 30, ~187 actions
+- **Report**: Generated successfully
+- **Lesson**: More rounds = more data for report, but a weak model still produces surface-level analysis
 
-## v3 — Claude Opus 4, BTC prediction (10 rounds)
+## Experiment 3 — Large Model, BTC Prediction (10 rounds)
 
-- **Project**: `proj_c1976801aed0`
-- **Rounds**: 10, 134 actions
-- **Report**: `report_056aca67f940`
-- **Model cost**: ~$9-10 per run (Anthropic API)
-- **Quality**: Dramatically better than Gemini Flash — deeper reasoning, richer agent interactions
+- **Model**: Claude Opus 4 (via API)
+- **Rounds**: 10, ~134 actions
+- **Cost**: ~$9-10 per run
+- **Quality**: Dramatically better — deeper reasoning, richer agent interactions
 - **Lesson**: Model quality matters enormously for both simulation and report depth
-- **⚠️ OOM risk**: 10 rounds is safe limit with Opus on 8GB RAM server. More rounds may crash.
+- **⚠️ OOM risk**: 10 rounds is safe limit with large models on 8GB RAM. More rounds may crash.
 
-## v4 — GPT-5.4 via Codex Proxy, BTC prediction (10 rounds)
+## Experiment 4 — Large Model via Proxy, BTC Prediction (10 rounds)
 
-- **Project**: `proj_feaf8dff1372`
+- **Model**: GPT-5 class (via OpenAI-compatible proxy, $0 cost)
 - **Rounds**: 10, only 8 actions (4 reddit + 4 twitter initial posts)
-- **Model**: GPT-5.4 via Codex OAuth Proxy (port 4000, $0 cost)
 - **Issue**: Simulation completed in 1.7 seconds — agents didn't make LLM calls during rounds
-- **Root cause**: `run_parallel_simulation.py` loads `.env` which had correct config, but OASIS engine creates initial posts without per-round LLM reasoning
-- **Fix applied**: Changed `env = os.environ.copy()` → `env = os.environ` in `simulation_runner.py`
-- **Report attempt**: `report_b312eaccc9d0` — failed (Connection error when proxy restarted with API key)
-- **Report v2**: `report_847388d0003b` — failed same reason
-- **Report v3**: `report_828f74173b11` — generating, GPT-5.4 calls confirmed in proxy log
+- **Root cause**: OASIS engine creates initial posts but may not invoke LLM for per-round reasoning
+- **Report**: Generated successfully after fixing proxy compatibility issues
 
-### Bugs discovered and fixed
+### Bugs Discovered and Fixed
 
-1. **assistant content type**: Responses API requires `output_text` for assistant messages, not `input_text`. Error: `Invalid value: 'input_text'. Supported values are: 'output_text' and 'refusal'.`
-2. **Environment propagation**: subprocess didn't inherit Flask env vars → `.env` values used instead
-3. **Backend venv**: Must use `.venv/bin/python3`, not system python (Flask not in system packages)
+1. **Assistant content type**: OpenAI Responses API requires `output_text` for assistant messages, not `input_text`. If you use a custom proxy, ensure this mapping is correct.
+2. **Environment propagation**: `run_parallel_simulation.py` subprocess may not inherit parent Flask env vars if `load_dotenv()` overrides them. Fix: ensure `.env` file has correct values, or modify `simulation_runner.py` to use `os.environ` directly.
+3. **Backend venv**: Must use `.venv/bin/python3`, not system python (Flask and deps are in venv only).
 
 ## Key Observations Across All Experiments
 
 ### Agent Generation
 - MiroFish extracts entities from seed text via Zep GraphRAG
 - Each entity becomes an agent with auto-generated persona (500-2000 chars)
-- BTC seed text produced: SEC, Mt.Gox, 200-day MA analyst, 50-day MA analyst, EU MiCA, RSI(14) analyst, Fibonacci analyst — all as separate agents
-- Personas are generated in Chinese (MiroFish default language) — works fine regardless of seed text language
+- For a BTC prediction seed, typical agents generated: regulatory bodies (SEC, EU MiCA), technical analysts (RSI, MA, Fibonacci), institutional actors (Mt.Gox, exchanges)
+- Personas are generated in Chinese by default (MiroFish's native language) — works fine regardless of seed text language
 
 ### Simulation Behavior
-- Initial posts are generated during setup (4 Twitter + 4 Reddit typical)
+- Initial posts are generated during setup (typically 4 Twitter + 4 Reddit)
 - Rounds may NOT involve per-agent LLM calls — OASIS engine can operate on pre-computed behavior
-- This means "20 rounds" doesn't mean "20 × N_agents LLM calls"
-- Actual LLM usage depends on OASIS engine configuration
+- "20 rounds" doesn't necessarily mean "20 × N_agents LLM calls"
+- Actual LLM usage depends on OASIS engine internals
 
 ### Report Generation
 - This is where most LLM calls happen (dozens of multi-turn conversations)
 - ReportAgent uses ReACT: plans sections → researches via Zep → writes → reflects
 - Report quality directly correlates with model quality
-- Multi-turn conversations (3-7 messages) are common in report generation
+- Multi-turn conversations (3-7 messages per section) are common
 
 ### Cost Comparison
-| Model | Cost per run | Quality | Speed |
-|-------|-------------|---------|-------|
-| Gemini Flash | ~$0 (free tier) | Low | Fast |
-| Claude Opus 4 | ~$9-10 | High | Slow |
-| GPT-5.4 (Codex Proxy) | $0 (subscription) | High | Medium |
+
+| Model Tier | Approx. Cost | Quality | Speed |
+|-----------|-------------|---------|-------|
+| Free/small (Gemini Flash, Qwen-turbo) | ~$0 | Low | Fast |
+| Mid-range (GPT-4o, Claude Sonnet) | ~$2-5 | Medium | Medium |
+| Large (GPT-4+, Claude Opus) | ~$8-12 | High | Slow |
+| Via subscription proxy | $0 (covered by subscription) | High | Medium |
