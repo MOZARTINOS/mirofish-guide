@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MiroFish](https://img.shields.io/badge/MiroFish-companion-blue)](https://github.com/666ghj/MiroFish)
 
-![MiroFish Guide Banner](assets/mirofish-guide-banner.svg)
+![MiroFish Guide Banner](assets/mirofish-guide-banner.jpg)
 
 ## Purpose
 
@@ -87,6 +87,7 @@ mirofish-guide/
 |-- agents/
 |   `-- openai.yaml
 |-- assets/
+|   |-- mirofish-guide-banner.jpg
 |   |-- mirofish-guide-banner.svg
 |   `-- mirofish-guide-mark.svg
 |-- CONTRIBUTING.md

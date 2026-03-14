@@ -2,6 +2,6 @@ interface:
   display_name: "MiroFish Guide Skill"
   short_description: "MiroFish operator playbook for setup, debugging, evaluation, and report analysis"
   icon_small: "./assets/mirofish-guide-mark.svg"
-  icon_large: "./assets/mirofish-guide-banner.svg"
+  icon_large: "./assets/mirofish-guide-banner.jpg"
   brand_color: "#1C7F6E"
   default_prompt: "Use $mirofish-guide to plan, debug, evaluate, or document work around the MiroFish engine."
