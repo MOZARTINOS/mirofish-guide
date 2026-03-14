@@ -63,7 +63,7 @@ Good seed text includes: regulatory bodies (SEC, EU MiCA), market indicators (RS
 
 The `simulation_topic` field guides what agents discuss. Be specific:
 
-- ✅ "Bitcoin BTC price prediction for next 7-30 days from March 2026. Current price $83,000. Focus on: SEC regulatory impact, ETF flows, technical support levels, macro factors (CPI, Fed rate)."
+- ✅ "Bitcoin BTC price prediction for next 7-30 days. Current price $XX,XXX. Focus on: SEC regulatory impact, ETF flows, technical support levels, macro factors (CPI, Fed rate)."
 - ❌ "What will happen with crypto?"
 
 ## Agent Design (Auto-Generated)

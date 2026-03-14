@@ -4,7 +4,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MiroFish](https://img.shields.io/badge/MiroFish-v1.0-blue)](https://github.com/666ghj/MiroFish)
-[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-orange)](https://github.com/openclaw/openclaw)
 
 ## Why This Guide?
 
@@ -22,20 +21,26 @@ MiroFish is a powerful multi-agent simulation engine, but it ships without a pra
 | **Common Pitfalls** | Bugs and gotchas discovered through real usage |
 | **Experiment Logs** | Real results comparing models, rounds, and configurations |
 
-## Quick Start
+## Usage
 
-### As an OpenClaw Skill
+### As an AI Agent Skill
+
+This guide is formatted as a skill file (`SKILL.md`) compatible with:
+
+- **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** — Anthropic's CLI coding agent
+- **[OpenClaw](https://github.com/openclaw/openclaw)** — AI assistant platform
+- **Any AI agent** that supports markdown skill files
 
 ```bash
-# Install the skill
+# OpenClaw
 openclaw skill install mirofish-guide.skill
 
-# The skill auto-activates when you work with MiroFish
+# Claude Code — just place SKILL.md in your project or reference it
 ```
 
-### Manual Usage
+### Standalone
 
-Just read [`SKILL.md`](SKILL.md) — it's a standalone guide. The [`references/experiments.md`](references/experiments.md) file has detailed experiment logs.
+Just read [`SKILL.md`](SKILL.md) — it's a self-contained guide. The [`references/experiments.md`](references/experiments.md) file has detailed experiment logs.
 
 ## Structure
 
@@ -44,6 +49,7 @@ mirofish-guide/
 ├── SKILL.md                    # Main guide (seed text, agents, tuning, pitfalls)
 ├── references/
 │   └── experiments.md          # Real experiment logs with different models/configs
+├── CONTRIBUTING.md
 ├── README.md
 └── LICENSE
 ```
@@ -58,7 +64,9 @@ mirofish-guide/
 
 ## Contributing
 
-Contributions welcome! Areas that need work:
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+Areas that need work:
 
 - [ ] More experiment logs with different use cases (politics, product launches, public opinion)
 - [ ] Seed text templates for common scenarios
@@ -67,18 +75,10 @@ Contributions welcome! Areas that need work:
 - [ ] Multi-language seed text comparison
 - [ ] Cost optimization strategies
 
-### How to Contribute
-
-1. Fork this repo
-2. Add your experiments to `references/experiments.md`
-3. Update `SKILL.md` with new findings
-4. Submit a PR with a description of what you tested and learned
-
 ## Related
 
 - [MiroFish](https://github.com/666ghj/MiroFish) — the simulation engine itself
-- [OASIS](https://github.com/camel-ai/oasis) — underlying social simulation framework
-- [OpenClaw](https://github.com/openclaw/openclaw) — AI assistant platform (skills system)
+- [OASIS](https://github.com/camel-ai/oasis) — underlying social simulation framework by CAMEL-AI
 - [Zep](https://www.getzep.com/) — memory/graph service used by MiroFish
 
 ## License
