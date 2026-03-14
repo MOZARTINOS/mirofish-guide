@@ -174,3 +174,8 @@ When a MiroFish result is weak, inspect stages in this order:
 That order prevents you from trying to fix report quality at the very end when the actual problem started at the beginning.
 
 For the operator loop around those stages, use `references/operator-workflow.md`.
+For graph-build failures, runtime evidence, and report verification, also use:
+
+- `references/graph-build-runbook.md`
+- `references/runtime-forensics.md`
+- `references/report-audit.md`

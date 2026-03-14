@@ -29,6 +29,9 @@ Load only the file you need:
 - `references/debugging.md`
   Use for setup problems, missing artifacts, weak runs, report issues, or proxy problems.
 
+- `references/graph-build-runbook.md`
+  Use for sparse ontology output, graph build failures, Zep ingestion trouble, or entity-normalization issues.
+
 - `references/seed-templates.md`
   Use for reusable source-material patterns and stronger simulation requirements.
 
@@ -37,6 +40,12 @@ Load only the file you need:
 
 - `references/operator-workflow.md`
   Use for the practical operator loop: pilot run, artifact checks, scaling, and post-run audit.
+
+- `references/runtime-forensics.md`
+  Use when a run technically completed but you need to judge whether it produced meaningful multi-agent behavior.
+
+- `references/report-audit.md`
+  Use when verifying report claims against raw artifacts and tool logs.
 
 - `references/evidence-taxonomy.md`
   Use when classifying claims or verifying whether a report assertion is actually supported.

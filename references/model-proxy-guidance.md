@@ -21,6 +21,17 @@ Reject a route for serious work if it cannot pass all of these:
 
 ## Common Failure Patterns
 
+## Current Upstream Issue-Tracker Signals
+
+Useful current signals from the upstream repo:
+
+- issue `#154`: profile serialization can fail when LLM output structure is inconsistent;
+- PR `#122`: local-model compatibility needed relaxed JSON-response handling;
+- PR `#124`: mixed LLM responses needed more robust JSON extraction;
+- PR `#161`: profile output normalization needed hardening.
+
+Treat those as route-selection hints, not as proof that your own route will fail the same way.
+
 ### Structured output failures
 
 Symptoms:

@@ -35,6 +35,9 @@ This repository is for the people searching for:
 - `MiroFish evaluation`
 - `MiroFish operator workflow`
 - `MiroFish proxy compatibility`
+- `MiroFish graph build failure`
+- `MiroFish runtime forensics`
+- `MiroFish report audit`
 
 If MiroFish feels powerful but hard to operate consistently, this repository is meant to close that gap.
 
@@ -71,9 +74,12 @@ mirofish-guide/
 |   |-- evidence-taxonomy.md
 |   |-- evaluation-rubric.md
 |   |-- experiment-protocol.md
+|   |-- graph-build-runbook.md
 |   |-- glossary.md
 |   |-- model-proxy-guidance.md
 |   |-- operator-workflow.md
+|   |-- report-audit.md
+|   |-- runtime-forensics.md
 |   |-- workflow.md
 |   |-- debugging.md
 |   |-- seed-templates.md
@@ -97,8 +103,11 @@ mirofish-guide/
 - `references/evidence-taxonomy.md`: how to label claims and verify report evidence.
 - `references/evaluation-rubric.md`: how to score simulation and report quality.
 - `references/experiment-protocol.md`: how to run reproducible comparisons.
+- `references/graph-build-runbook.md`: concrete checks for graph-stage failures and sparse ontologies.
 - `references/operator-workflow.md`: the practical operator loop from seed to audit.
 - `references/model-proxy-guidance.md`: route acceptance checks and proxy-specific failure patterns.
+- `references/runtime-forensics.md`: how to judge whether a run was substantively alive.
+- `references/report-audit.md`: how to verify report claims against raw evidence.
 - `references/anti-patterns.md`: mistakes that waste budget or produce misleading runs.
 - `references/glossary.md`: compact definitions for MiroFish-specific terms.
 
@@ -121,9 +130,12 @@ Start with [`SKILL.md`](SKILL.md), then open the relevant reference:
 
 - [`references/workflow.md`](references/workflow.md) for architecture and stage mapping;
 - [`references/debugging.md`](references/debugging.md) for operational problems;
+- [`references/graph-build-runbook.md`](references/graph-build-runbook.md) for graph-stage failures;
 - [`references/seed-templates.md`](references/seed-templates.md) for reusable input patterns;
 - [`references/experiments.md`](references/experiments.md) for empirical tradeoffs;
 - [`references/operator-workflow.md`](references/operator-workflow.md) for the end-to-end operating loop;
+- [`references/runtime-forensics.md`](references/runtime-forensics.md) for deciding whether a run actually produced meaningful behavior;
+- [`references/report-audit.md`](references/report-audit.md) for verifying report claims;
 - [`references/evaluation-rubric.md`](references/evaluation-rubric.md) when you need to judge whether a run was actually good.
 
 ## Quick Start

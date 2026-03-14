@@ -109,6 +109,8 @@ Known upstream issue-tracker patterns to keep in mind:
 
 Treat those as reproducibility hints until you confirm them in your own run.
 
+For a graph-stage-focused checklist, use `references/graph-build-runbook.md`.
+
 ## Symptom: Personas Are Generic
 
 Likely causes:
@@ -169,6 +171,8 @@ Check:
 
 If the UI and files disagree, trust the files.
 
+For runtime evidence review, use `references/runtime-forensics.md`.
+
 ## Symptom: Proxy Or OpenAI-Compatible Endpoint Misbehaves
 
 Known issue pattern:
@@ -220,6 +224,8 @@ Before trusting a report claim, verify:
 3. the platform databases contain compatible aggregate evidence;
 4. `agent_log.jsonl` shows which tools the report agent used;
 5. the claim can be classified with an evidence level from `references/evidence-taxonomy.md`.
+
+For a report-only audit workflow, use `references/report-audit.md`.
 
 ## Symptom: Environment State Looks Stuck
 
