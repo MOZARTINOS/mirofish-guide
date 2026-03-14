@@ -1,40 +1,59 @@
 # Contributing to MiroFish Guide
 
-Thanks for your interest in improving this guide! Here's how to help.
+This repository is a companion guide for the MiroFish engine. Contributions should make the guide more useful for operators and AI agents, not just longer.
 
-## What We Need Most
+## What We Want Most
 
-1. **Experiment logs** — Run MiroFish with different configurations and document results
-2. **Seed text templates** — Create reusable templates for common prediction scenarios
-3. **Bug reports** — Found a pitfall not documented? Add it
-4. **Translations** — The guide is in English; translations welcome
+1. `Code-grounded notes`
+   Add guidance tied to actual MiroFish files, generated artifacts, or API behavior.
 
-## How to Submit
+2. `Experiment logs`
+   Record real runs with model, rounds, action counts, failures, and takeaways.
 
-1. Fork the repo
-2. Create a branch: `git checkout -b my-improvement`
-3. Make your changes
-4. Submit a PR with:
-   - What you changed and why
-   - If adding experiments: model used, rounds, agent count, results
+3. `Prompt and seed templates`
+   Add reusable input patterns for real MiroFish scenarios.
+
+4. `Version drift updates`
+   If upstream MiroFish changes behavior, update this guide and name the affected stage.
+
+## Evidence Standard
+
+When you add a claim, label it mentally as one of:
+
+- code-confirmed
+- artifact-confirmed
+- experiment-confirmed
+- hypothesis
+
+Only the first three belong in the guide without a warning label.
+
+## How To Submit
+
+1. Fork the repo.
+2. Create a branch.
+3. Make the smallest useful change that improves the guide.
+4. Submit a PR that states:
+   - what changed;
+   - which pipeline stage it affects;
+   - whether the change is code-confirmed or experiment-confirmed.
 
 ## Experiment Log Format
 
-When adding experiments to `references/experiments.md`, use this format:
+When adding experiments to `references/experiments.md`, use a compact format:
 
 ```markdown
-## Experiment N — [Model], [Topic] ([rounds] rounds)
+## Experiment N: [Model], [Scenario], [Rounds]
 
-- **Model**: [model name and tier]
-- **Rounds**: [count], [action count] actions
-- **Cost**: [approximate cost per run]
-- **Quality**: [brief assessment]
-- **Lesson**: [key takeaway]
+- `Model`: ...
+- `Rounds`: ...
+- `Actions`: ...
+- `Result`: ...
+- `Takeaway`: ...
 ```
 
-## Style Guide
+## Style Rules
 
-- Keep it practical — actionable advice over theory
-- Include specific numbers (rounds, costs, action counts)
-- Document failures too — what DIDN'T work is valuable
-- No personal data, API keys, or internal URLs
+- keep it practical and reproducible;
+- prefer artifact paths and concrete numbers over vague claims;
+- document failures, not just success cases;
+- do not include secrets, personal data, or internal-only endpoints.

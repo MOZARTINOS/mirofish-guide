@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">MiroFish Guide Banner</title>
+  <desc id="desc">Banner for the MiroFish Guide repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081a24"/>
+      <stop offset="55%" stop-color="#0e3d4d"/>
+      <stop offset="100%" stop-color="#1c7f6e"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2f7f6" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#f2f7f6" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <circle cx="1035" cy="175" r="145" fill="#7ce1c3" fill-opacity="0.15"/>
+  <circle cx="1130" cy="480" r="185" fill="#ffe28a" fill-opacity="0.10"/>
+  <rect x="72" y="78" width="1136" height="484" rx="28" fill="url(#panel)" stroke="#e5fff6" stroke-opacity="0.16"/>
+  <g transform="translate(128 138)">
+    <rect x="0" y="0" width="130" height="130" rx="26" fill="#0a2531" stroke="#98f0d5" stroke-opacity="0.55"/>
+    <path d="M27 72c22-29 46-44 73-44 13 0 24 3 33 9-13 7-22 17-28 30 13 1 25 7 37 18-15 5-31 8-49 8-12 0-24-1-36-4l-19 21H17l19-23c-4-5-7-10-9-15z" fill="#98f0d5"/>
+    <circle cx="86" cy="53" r="5" fill="#0a2531"/>
+  </g>
+  <text x="294" y="208" fill="#f7fff9" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="700">MiroFish Guide</text>
+  <text x="296" y="268" fill="#d8fff2" font-family="Segoe UI, Arial, sans-serif" font-size="28">Practical setup, troubleshooting, prompt design, and simulation best practices</text>
+  <text x="296" y="342" fill="#ffffff" font-family="Consolas, Courier New, monospace" font-size="26">Guide the pipeline:</text>
+  <text x="296" y="385" fill="#ffffff" font-family="Consolas, Courier New, monospace" font-size="26">source -&gt; graph -&gt; entities -&gt; profiles -&gt; runtime -&gt; report</text>
+  <text x="296" y="462" fill="#d6fbee" font-family="Segoe UI, Arial, sans-serif" font-size="25">Built as a community companion for the MiroFish engine and AI-agent workflows</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">MiroFish Guide Mark</title>
+  <desc id="desc">Icon for the MiroFish Guide repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081a24"/>
+      <stop offset="100%" stop-color="#1c7f6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <path d="M95 279c58-77 122-117 195-117 34 0 64 8 90 24-33 18-60 46-78 82 36 4 69 19 103 47-41 15-84 22-129 22-32 0-63-3-93-11l-51 57H75l50-63c-13-12-23-26-30-41z" fill="#98f0d5"/>
+  <circle cx="252" cy="226" r="16" fill="#0a2531"/>
+  <text x="256" y="440" text-anchor="middle" fill="#f4fff9" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700">GUIDE</text>
+</svg>
