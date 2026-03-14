@@ -14,8 +14,17 @@ Describe the repository improvement in one short paragraph.
 ## Evidence level
 
 - code-confirmed
+- doc-confirmed
 - artifact-confirmed
 - experiment-confirmed
+- analogy-based
+- unresolved
+
+## Validation
+
+- [ ] Relevant artifact paths or upstream code paths were checked
+- [ ] Any experiment claims include enough run context to reproduce
+- [ ] No local-only research notes or private run data were committed
 
 ## Safety
 

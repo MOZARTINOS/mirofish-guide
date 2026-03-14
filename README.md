@@ -32,6 +32,9 @@ This repository is for the people searching for:
 - `MiroFish prompt design`
 - `MiroFish seed text`
 - `MiroFish report debugging`
+- `MiroFish evaluation`
+- `MiroFish operator workflow`
+- `MiroFish proxy compatibility`
 
 If MiroFish feels powerful but hard to operate consistently, this repository is meant to close that gap.
 
@@ -54,7 +57,9 @@ The repository focuses on the practices around that pipeline:
 - interpreting entity and persona generation;
 - tuning runs without guessing blindly;
 - debugging from generated artifacts and logs;
-- recording empirical findings separately from code-confirmed facts.
+- recording empirical findings separately from code-confirmed facts;
+- scoring run quality with explicit evaluation rubrics;
+- comparing routes and models without confusing transport issues with engine issues.
 
 ## Repository Contents
 
@@ -62,6 +67,13 @@ The repository focuses on the practices around that pipeline:
 mirofish-guide/
 |-- SKILL.md
 |-- references/
+|   |-- anti-patterns.md
+|   |-- evidence-taxonomy.md
+|   |-- evaluation-rubric.md
+|   |-- experiment-protocol.md
+|   |-- glossary.md
+|   |-- model-proxy-guidance.md
+|   |-- operator-workflow.md
 |   |-- workflow.md
 |   |-- debugging.md
 |   |-- seed-templates.md
@@ -82,6 +94,13 @@ mirofish-guide/
 - `references/debugging.md`: artifact-level troubleshooting guide.
 - `references/seed-templates.md`: reusable source-material and simulation-requirement templates.
 - `references/experiments.md`: empirical run notes and tuning observations.
+- `references/evidence-taxonomy.md`: how to label claims and verify report evidence.
+- `references/evaluation-rubric.md`: how to score simulation and report quality.
+- `references/experiment-protocol.md`: how to run reproducible comparisons.
+- `references/operator-workflow.md`: the practical operator loop from seed to audit.
+- `references/model-proxy-guidance.md`: route acceptance checks and proxy-specific failure patterns.
+- `references/anti-patterns.md`: mistakes that waste budget or produce misleading runs.
+- `references/glossary.md`: compact definitions for MiroFish-specific terms.
 
 ## How To Use It
 
@@ -103,14 +122,17 @@ Start with [`SKILL.md`](SKILL.md), then open the relevant reference:
 - [`references/workflow.md`](references/workflow.md) for architecture and stage mapping;
 - [`references/debugging.md`](references/debugging.md) for operational problems;
 - [`references/seed-templates.md`](references/seed-templates.md) for reusable input patterns;
-- [`references/experiments.md`](references/experiments.md) for empirical tradeoffs.
+- [`references/experiments.md`](references/experiments.md) for empirical tradeoffs;
+- [`references/operator-workflow.md`](references/operator-workflow.md) for the end-to-end operating loop;
+- [`references/evaluation-rubric.md`](references/evaluation-rubric.md) when you need to judge whether a run was actually good.
 
 ## Quick Start
 
 1. Read [`references/workflow.md`](references/workflow.md) to locate the stage you are working on.
 2. Use [`references/seed-templates.md`](references/seed-templates.md) to prepare stronger source material and simulation requirements.
-3. If something fails or looks weak, go to [`references/debugging.md`](references/debugging.md).
-4. If you are comparing models, cost, or run quality, go to [`references/experiments.md`](references/experiments.md).
+3. Use [`references/operator-workflow.md`](references/operator-workflow.md) to run a small pilot before scaling.
+4. If something fails or looks weak, go to [`references/debugging.md`](references/debugging.md).
+5. If you are comparing models, cost, or run quality, use [`references/experiment-protocol.md`](references/experiment-protocol.md), [`references/evaluation-rubric.md`](references/evaluation-rubric.md), and [`references/experiments.md`](references/experiments.md).
 
 ## Who This Is For
 
@@ -126,6 +148,7 @@ Start with [`SKILL.md`](SKILL.md), then open the relevant reference:
 3. Debug from artifacts first. MiroFish writes useful state, config, profile, and report files; use them before patching code.
 4. Prefer changes in seed material and simulation requirements before invasive engine changes.
 5. Keep the guide repository sharper than the engine README: shorter claims, more verification, better operator context.
+6. Treat the report as a summary layer, not the only evidence layer.
 
 ## Safety And Hygiene
 
@@ -141,6 +164,7 @@ This repository should never become a dump of local context or private data.
 - add code-grounded notes tied to concrete engine files or generated artifacts;
 - add new experiment logs with model, rounds, action counts, and constraints;
 - add repeatable prompt or seed templates for real MiroFish use cases;
+- add scorecards, compatibility notes, and operator checks that reduce wasted runs;
 - document version drift when upstream MiroFish behavior changes.
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the expected format.

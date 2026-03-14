@@ -18,14 +18,16 @@ This repository is a companion guide for the MiroFish engine. Contributions shou
 
 ## Evidence Standard
 
-When you add a claim, label it mentally as one of:
+When you add a claim, label it with the evidence taxonomy from `references/evidence-taxonomy.md`:
 
 - code-confirmed
+- doc-confirmed
 - artifact-confirmed
 - experiment-confirmed
-- hypothesis
+- analogy-based
+- unresolved
 
-Only the first three belong in the guide without a warning label.
+Only clearly labeled evidence should appear in the guide. Do not present analogy-based guidance as engine fact.
 
 ## How To Submit
 
@@ -35,11 +37,12 @@ Only the first three belong in the guide without a warning label.
 4. Submit a PR that states:
    - what changed;
    - which pipeline stage it affects;
-   - whether the change is code-confirmed or experiment-confirmed.
+   - which evidence label applies;
+   - which artifacts or code paths you checked.
 
 ## Experiment Log Format
 
-When adding experiments to `references/experiments.md`, use a compact format:
+When adding experiments to `references/experiments.md`, use the protocol in `references/experiment-protocol.md` and keep the summary compact:
 
 ```markdown
 ## Experiment N: [Model], [Scenario], [Rounds]
@@ -49,6 +52,9 @@ When adding experiments to `references/experiments.md`, use a compact format:
 - `Actions`: ...
 - `Result`: ...
 - `Takeaway`: ...
+- `Simulation score`: ...
+- `Report score`: ...
+- `Artifacts checked`: ...
 ```
 
 ## Style Rules
@@ -56,4 +62,5 @@ When adding experiments to `references/experiments.md`, use a compact format:
 - keep it practical and reproducible;
 - prefer artifact paths and concrete numbers over vague claims;
 - document failures, not just success cases;
+- change one main variable at a time when possible;
 - do not include secrets, personal data, or internal-only endpoints.

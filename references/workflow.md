@@ -26,6 +26,7 @@ Practical guidance:
 - include named entities, relationships, dates, numbers, and competing viewpoints;
 - use one focused scenario per source package;
 - avoid giant mixed-context dumps when the simulation question is narrow.
+- make temporal order explicit when the scenario depends on changing facts.
 
 ## Stage 2: Graph Build In Zep
 
@@ -119,8 +120,11 @@ Generated simulation artifacts usually include:
 - `reddit_profiles.json`
 - `twitter_profiles.csv`
 - `run_state.json`
-- `actions.jsonl`
+- `twitter/actions.jsonl`
+- `reddit/actions.jsonl`
 - `env_status.json`
+- `twitter_simulation.db`
+- `reddit_simulation.db`
 
 Important interpretation detail:
 
@@ -140,7 +144,8 @@ Relevant engine areas:
 Code-grounded facts:
 
 - the report agent follows a ReACT-style loop;
-- tool calls include search and world-inspection style operations such as `search`, `insight_forge`, `panorama`, and `interview`;
+- tool calls include `insight_forge`, `panorama_search`, `quick_search`, and `interview_agents`;
+- the section-generation prompt requires at least `3` tool calls and the hard cap is `5`;
 - report logs are stored separately from runtime logs.
 
 Generated report artifacts include:
@@ -152,6 +157,7 @@ Operator implications:
 
 - report quality depends heavily on model quality;
 - report debugging should start from these artifacts, not from guesswork about the final prose.
+- final markdown is a summary layer, not the primary evidence layer.
 
 ## End-To-End Quality Heuristic
 
@@ -166,3 +172,5 @@ When a MiroFish result is weak, inspect stages in this order:
 7. report logs
 
 That order prevents you from trying to fix report quality at the very end when the actual problem started at the beginning.
+
+For the operator loop around those stages, use `references/operator-workflow.md`.

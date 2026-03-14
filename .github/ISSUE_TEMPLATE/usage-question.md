@@ -31,7 +31,10 @@ If relevant, mention artifact paths such as:
 - `state.json`
 - `simulation_config.json`
 - `run_state.json`
-- `actions.jsonl`
+- `twitter/actions.jsonl`
+- `reddit/actions.jsonl`
+- `twitter_simulation.db`
+- `reddit_simulation.db`
 - `agent_log.jsonl`
 
 Redact private information before posting.

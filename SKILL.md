@@ -1,6 +1,6 @@
 ---
 name: mirofish-guide
-description: "Companion skill for the MiroFish multi-agent simulation engine. Use when planning or running MiroFish simulations, writing source material or simulation requirements, debugging graph/entity/profile/config/runtime/report stages, interpreting generated artifacts, or maintaining a repository of MiroFish best practices."
+description: "Companion skill for the MiroFish multi-agent simulation engine. Use when planning or running MiroFish simulations, writing source material or simulation requirements, debugging graph/entity/profile/config/runtime/report stages, evaluating run quality, validating model or proxy routes, interpreting generated artifacts, or maintaining a repository of MiroFish best practices."
 ---
 
 # MiroFish Guide Skill
@@ -35,12 +35,34 @@ Load only the file you need:
 - `references/experiments.md`
   Use for empirical tuning observations, model comparisons, and cost-quality tradeoffs.
 
+- `references/operator-workflow.md`
+  Use for the practical operator loop: pilot run, artifact checks, scaling, and post-run audit.
+
+- `references/evidence-taxonomy.md`
+  Use when classifying claims or verifying whether a report assertion is actually supported.
+
+- `references/evaluation-rubric.md`
+  Use when scoring simulation quality or report quality.
+
+- `references/experiment-protocol.md`
+  Use when planning a reproducible comparison across models, prompts, or runtime settings.
+
+- `references/model-proxy-guidance.md`
+  Use when validating model routes, OpenAI-compatible proxies, or structured-output reliability.
+
+- `references/anti-patterns.md`
+  Use when preventing common operator mistakes before they waste time or API budget.
+
+- `references/glossary.md`
+  Use for short definitions of MiroFish, OASIS, Zep, GraphRAG, and report-stage terms.
+
 ## Operating Rules
 
 1. Separate `code-confirmed` facts from `experiment-confirmed` observations.
 2. Prefer fixing source material and simulation requirements before patching engine internals.
 3. Debug from generated artifacts first, not from vague impressions of the final report.
 4. Do not assume round count equals reasoning depth.
+5. Treat the report as a summary layer and verify important claims against raw artifacts.
 
 ## What Usually Matters Most
 
@@ -109,7 +131,8 @@ Inspect:
 - `state.json`
 - `simulation_config.json`
 - `run_state.json`
-- `actions.jsonl`
+- per-platform `actions.jsonl`
+- per-platform simulation databases
 
 Fast completion can mean the environment only produced initial actions and did not do much per-round reasoning.
 
@@ -136,7 +159,8 @@ So the root `.env` can silently replace values you thought were inherited from a
 - graph build uses chunking before Zep ingestion;
 - generated runtime artifacts live under `backend/uploads/simulations/<simulation_id>/` in a MiroFish checkout;
 - report artifacts live under `backend/uploads/reports/<report_id>/` in a MiroFish checkout;
-- report generation is often the most reasoning-heavy stage.
+- report generation is often the most reasoning-heavy stage;
+- the report agent uses tool-backed section generation and logs its work to `agent_log.jsonl`.
 
 ## When Maintaining This Repository
 

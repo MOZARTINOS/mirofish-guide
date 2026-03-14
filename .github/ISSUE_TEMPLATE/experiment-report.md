@@ -20,10 +20,25 @@ What was the simulation about?
 - rounds:
 - action count:
 - approximate cost:
+- main variable changed from baseline:
 
 ## What happened?
 
 Summarize output quality, runtime behavior, and report quality.
+
+## Evaluation
+
+- simulation score:
+- report score:
+- evidence label:
+
+## Artifacts checked
+
+- `state.json`:
+- `simulation_config.json`:
+- `run_state.json`:
+- `actions.jsonl` or per-platform logs:
+- `agent_log.jsonl`:
 
 ## Key takeaway
 

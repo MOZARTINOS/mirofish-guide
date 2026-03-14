@@ -6,6 +6,8 @@ For code-grounded defaults and file paths, use:
 
 - `references/workflow.md`
 - `references/debugging.md`
+- `references/experiment-protocol.md`
+- `references/evaluation-rubric.md`
 
 ## Cross-Run Patterns
 
@@ -80,4 +82,7 @@ When you add new experiments, record:
 - whether runtime behavior looked substantive
 - whether report generation succeeded
 - cost estimate
+- simulation score from `references/evaluation-rubric.md`
+- report score from `references/evaluation-rubric.md`
+- the artifact paths you actually checked
 - the single most useful takeaway
