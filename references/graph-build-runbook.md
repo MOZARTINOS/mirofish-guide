@@ -23,7 +23,7 @@ If the graph is weak here, the rest of the pipeline inherits that weakness.
 
 ### Symptom: Graph build fails with `429`
 
-Upstream issue tracker currently includes issue `#60` for Zep free-tier rate limiting during graph construction.
+Upstream issue tracker includes issue `#60` for Zep free-tier rate limiting during graph construction.
 
 What to do:
 
@@ -32,9 +32,21 @@ What to do:
 - wait and retry instead of hammering the same request pattern;
 - treat free-tier Zep runs as fragile for larger tests.
 
+**Update (community-reported, 2026-06).** Later issues (`#261`, `#444`, `#465`, `#548`) pin down why
+this fires so easily: the frontend polls roughly every 10s (~6 requests/min) while the Zep free tier
+caps at ~5 requests/min, so even one small PDF can trip an instant `429`. Two concrete workarounds
+operators report:
+
+- raise the frontend poll interval (e.g. `10000` → `60000` ms) so polling stays under the free-tier cap;
+- raise `chunk_size` from the `500` default toward ~`2000` so a large document produces fewer episodes
+  and stays under the ~1000-episode/month free-tier ceiling (the default settings can blow past it).
+
+To avoid the Zep cloud free tier entirely, community local-deployment forks exist — see
+`references/model-proxy-guidance.md` and `references/project-context.md`.
+
 Evidence level:
 
-- community-reported upstream issue;
+- community-reported upstream issues (verify against the live tracker — numbers drift over time);
 - use `unresolved` until you reproduce it locally.
 
 ### Symptom: Graph build fails with PascalCase or target-name errors
@@ -55,7 +67,7 @@ Evidence level:
 
 ### Symptom: Ontology generation returns `500`
 
-Upstream issue tracker currently includes issue `#180` for ontology-generation failures and active PRs around more robust JSON parsing.
+Upstream issue tracker includes issue `#180` for ontology-generation failures and active PRs around more robust JSON parsing.
 
 Likely causes:
 
@@ -63,8 +75,16 @@ Likely causes:
 - seed package is too noisy;
 - local or proxy model is weak at JSON-heavy tasks.
 
+**Update (community-reported, 2026-06).** A more specific root cause is documented in issues `#271`,
+`#298`, and `#299`: the backend's `chat_json()` always sends `response_format={"type":"json_object"}`,
+which the project was "primarily tested with Qwen via DashScope" to satisfy. Many non-Qwen
+OpenAI-compatible routes (including `gpt-4o`/`gpt-4o-mini`) do not honor that the same way and fail at
+the ontology step with a `500`. A fix (PR `#186`) was still **unmerged** at this snapshot, so the
+practical mitigation is route selection, not a code change.
+
 What to do:
 
+- prefer a Qwen/DashScope route, or another route confirmed to honor `json_object` responses;
 - switch to a route with more reliable structured output;
 - simplify the seed package;
 - rerun the graph stage before touching later stages.

@@ -83,6 +83,7 @@ mirofish-guide/
 |   |-- workflow.md
 |   |-- debugging.md
 |   |-- seed-templates.md
+|   |-- project-context.md
 |   `-- experiments.md
 |-- agents/
 |   `-- openai.yaml
@@ -111,6 +112,7 @@ mirofish-guide/
 - `references/report-audit.md`: how to verify report claims against raw evidence.
 - `references/anti-patterns.md`: mistakes that waste budget or produce misleading runs.
 - `references/glossary.md`: compact definitions for MiroFish-specific terms.
+- `references/project-context.md`: a dated background snapshot (backing, adoption, and the honest "plausible narrative, not validated prediction" framing). The rest of the guide is version-neutral on purpose; dated, project-specific facts live only in this file.
 
 ## How To Use It
 

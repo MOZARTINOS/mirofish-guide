@@ -30,7 +30,35 @@ Useful current signals from the upstream repo:
 - PR `#124`: mixed LLM responses needed more robust JSON extraction;
 - PR `#161`: profile output normalization needed hardening.
 
+**Update (community-reported, 2026-06).** Newer signals sharpen the same picture (verify against the
+live tracker — issue numbers drift):
+
+- issue `#299` (with `#271`/`#298`): non-Qwen OpenAI-compatible routes fail JSON parsing at the ontology
+  step because the backend always requests a `json_object` response and the project was "primarily tested
+  with Qwen via DashScope";
+- PR `#186`: a fix for that JSON-response handling, still **unmerged** at this snapshot;
+- issue `#577`: chat/interview can repeat the first-round answer instead of advancing;
+- issue `#492`: the pipeline uses only uploaded docs plus the model's parametric knowledge — "no
+  mechanism at any stage to fetch, validate, or enrich against live real-world data."
+
 Treat those as route-selection hints, not as proof that your own route will fail the same way.
+
+### Local-deployment routes (reported)
+
+Because the cloud defaults (Zep free tier + DashScope-tuned JSON) are the main friction points,
+community forks rebuild MiroFish for local or cheaper operation. Treat these as `unresolved` (reported);
+star counts are soft-phrased on purpose because sources disagree:
+
+- **MiroFish-Offline** — a popular fully-local fork: Zep is replaced with **Neo4j Community Edition**
+  and all LLM/embedding calls go to **Ollama**, so no cloud keys are needed; ships an English UI and a
+  one-command Docker Compose setup. Best option when data must not leave the machine.
+- **Infernex Geo** — an OpenAI-compatible endpoint reported at roughly **95% cheaper** than OpenAI
+  (~$0.05/M tokens), swapped in via a couple of `.env` lines.
+- **regolo.ai + local Mem0** — replaces Zep/DashScope with regolo endpoints plus a local Mem0
+  (SQLite + Qdrant) memory store; positioned for GDPR/EU operation.
+
+An upstream issue also *proposes* a local Zep replacement, but do not cite a standalone "OpenZep" repo
+or its coverage numbers — those are unverified (see `references/project-context.md`).
 
 ### Structured output failures
 
@@ -77,6 +105,8 @@ Use this table in PRs, issues, or local notes when comparing routes.
 | Route | Model | Graph build | Runtime | Report | Structured JSON reliability | Notes | Evidence |
 |------|-------|-------------|---------|--------|-----------------------------|-------|----------|
 | Example | qwen-plus | pass | pass | pass | high | good default baseline | doc-confirmed plus local test |
+| DashScope | qwen-plus | pass | pass | pass | high | the route the project is tuned for; honors `json_object` | doc-confirmed |
+| OpenAI-compatible | gpt-4o / gpt-4o-mini | often fails | n/a | n/a | low at ontology step | breaks at ontology `500` until PR `#186`-style JSON handling lands | community-reported 2026-06, verify locally |
 
 ## What To Measure
 

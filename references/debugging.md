@@ -107,6 +107,10 @@ Known upstream issue-tracker patterns to keep in mind:
 - free-tier Zep usage can hit `429` rate limits during ingestion;
 - stricter graph tooling can reject badly normalized entity targets.
 
+Update (community-reported, 2026-06): the `429` is easy to trip because the frontend polls ~6 req/min
+against a ~5 req/min free-tier cap; raising the poll interval (`10000` → `60000` ms) and the `chunk_size`
+(`500` → ~`2000`) are the common workarounds. See `references/graph-build-runbook.md` for detail.
+
 Treat those as reproducibility hints until you confirm them in your own run.
 
 For a graph-stage-focused checklist, use `references/graph-build-runbook.md`.
@@ -180,6 +184,12 @@ Known issue pattern:
 - assistant message content type compatibility can break custom proxies;
 - some setups need assistant content mapped as `output_text` rather than `input_text`
 
+Update (community-reported, 2026-06): a common, route-specific failure is the ontology step returning a
+`500` on non-Qwen OpenAI-compatible routes, because the backend always requests a `json_object` response
+that those routes do not honor the same way (issues `#271`/`#298`/`#299`; fix PR `#186` unmerged at this
+snapshot). Prefer a Qwen/DashScope route or one confirmed to honor `json_object`. See
+`references/model-proxy-guidance.md`.
+
 When a proxy is involved:
 
 - verify request and response formats against the OpenAI-compatible layer you are using;
@@ -214,6 +224,25 @@ Direct upstream code check:
 Practical implication:
 
 - if the log shows too few useful tool calls, repeated tool calls with no new information, or weak observations, the report stage was underpowered even if the final markdown looks polished.
+
+## Symptom: Report Contains Fabricated Or Unexecuted Content
+
+Community-reported failure modes (2026-06; verify against the live tracker):
+
+- issue `#529`: a report section can contain plausible-sounding but fabricated entities, quotes, and
+  statistics that never appeared in the simulation;
+- issue `#599`: raw, unexecuted `tool_call` JSON can be written straight into a section that the tracker
+  still marks "completed";
+- issue `#492`: the pipeline does not fetch or validate against live real-world data, so a polished
+  report can rest on "four layers of unverified assumptions."
+
+Operator response:
+
+- never trust report prose on its own — trace every concrete claim back to `actions.jsonl`, the platform
+  databases, and `agent_log.jsonl` (see `references/report-audit.md`);
+- treat a "completed" status as a UI state, not proof the section was actually generated cleanly;
+- read MiroFish output as qualitative narrative, not as numeric forecast (background:
+  `references/project-context.md`).
 
 ## Report Audit Checklist
 

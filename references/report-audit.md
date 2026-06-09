@@ -48,6 +48,23 @@ Direct upstream code check:
 - unsupported causal claims;
 - report conclusions that exceed what the runtime actually showed.
 
+## Known Fabrication Failure Modes (community-reported, 2026-06)
+
+These are documented upstream failure modes, not hypotheticals. Verify against the live tracker — issue
+numbers drift over time.
+
+- issue `#529`: sections can contain plausible-sounding but **fabricated** entities, quotes, and
+  statistics that never appeared in the simulation;
+- issue `#599`: raw, **unexecuted `tool_call` JSON** can be written directly into a section the tracker
+  still marks "completed" — a polished status does not mean the section was actually produced cleanly;
+- issue `#492`: the pipeline does not fetch or validate against live real-world data, so a confident
+  report can sit on "four layers of unverified assumptions."
+
+Because there is no upstream accuracy benchmark, treat a MiroFish report as **qualitative narrative, not
+a numeric forecast**. The audit below is what keeps a fabricated-but-fluent section from being cited as
+fact. Background and the broader "plausible narrative, not validated prediction" framing:
+`references/project-context.md`.
+
 ## Claim Audit Template
 
 Use this table when reviewing an important report:

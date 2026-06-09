@@ -65,6 +65,9 @@ Load only the file you need:
 - `references/glossary.md`
   Use for short definitions of MiroFish, OASIS, Zep, GraphRAG, and report-stage terms.
 
+- `references/project-context.md`
+  Use for background questions: who backs/built MiroFish, how popular it is, release timeline, how much to trust its predictions, the local-deployment forks, and how it compares to other simulators. Dated snapshot; the rest of the guide is version-neutral.
+
 ## Operating Rules
 
 1. Separate `code-confirmed` facts from `experiment-confirmed` observations.

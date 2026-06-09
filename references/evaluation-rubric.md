@@ -9,6 +9,11 @@ This rubric is intentionally operational. It is designed to answer:
 - was the report grounded in the simulation?
 - is the result worth iterating on or trusting further?
 
+It deliberately does **not** score predictive accuracy. There is no upstream benchmark of MiroFish output
+against real-world outcomes, so a high score here means the run was healthy and the analysis was
+qualitatively useful — not that the prediction will come true. Read results as narrative, not forecast
+(background: `references/project-context.md`).
+
 ## Simulation Quality
 
 ### Dimension 1: Agent Diversity

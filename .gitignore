@@ -17,3 +17,10 @@ backend/uploads/
 repo-guide/
 repo-engine/
 deep researches/
+
+# Local-only research scratch and private materials — never publish
+notebooklm_extracts/
+reports/
+extract_notebooklm.py
+notebooklm_login.py
+.claude/

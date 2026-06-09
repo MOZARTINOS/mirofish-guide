@@ -20,11 +20,19 @@ The step that decides which extracted entities become serious simulation candida
 
 ## OASIS
 
-The social-simulation framework MiroFish uses for runtime behavior across Twitter-like and Reddit-like environments.
+The social-simulation framework MiroFish uses for runtime behavior across Twitter-like and Reddit-like environments. MiroFish builds on OASIS `v0.2.5`, whose action set is **23** (it was 21 in the original Nov-2024 paper, expanded later). `doc-confirmed`.
 
 ## Zep
 
-The graph and memory service used by MiroFish for graph-backed context and longer-lived memory structures.
+The graph and memory service used by MiroFish for graph-backed context and longer-lived memory structures. The hosted **free tier caps at roughly 5 requests/min** and a low monthly episode count, which is the most common source of `429` ingestion failures (see `references/graph-build-runbook.md`). `doc-confirmed`.
+
+## BettaFish
+
+The author's earlier multi-agent public-opinion-analysis tool (微舆) and the lineage root of MiroFish — one official demo is seeded from a BettaFish-generated report. Useful context when explaining where MiroFish came from. `doc-confirmed`.
+
+## MiroFish-Offline
+
+A popular community fork that runs MiroFish fully locally: Zep is replaced with **Neo4j Community Edition** and LLM/embedding calls go to **Ollama**, so no cloud keys are required. The main escape hatch from the Zep free-tier and DashScope-tuning constraints (see `references/model-proxy-guidance.md`). `doc-confirmed`.
 
 ## GraphRAG
 
